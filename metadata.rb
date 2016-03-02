@@ -8,3 +8,4 @@ version          '0.1.0'
 
 depends 'apt', '~> 3.0.0'
 depends 'zipfile', '~> 0.1.0'
+depends 'python', '~> 1.4.6'
