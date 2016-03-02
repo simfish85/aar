@@ -3,7 +3,7 @@ package 'git'
 git '/tmp/AAR/' do
   repository 'https://github.com/chef-training/Awesome-Appliance-Repair.git'
   action :export
-  owner 'www-data'
+  user 'www-data'
   group 'www-data'
 end
 
