@@ -6,3 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe 'apt::default'
+
+include_recipe 'aar::webserver'
+include_recipe 'aar::mysql'
+include_recipe 'aar::unzip'
