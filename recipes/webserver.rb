@@ -3,15 +3,24 @@
 # Recipe:: webserver
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
-package ['apache2', 'libapache2-mod-wsgi', 'python-pip']
 
-service 'apache2' do
-  action [:enable, :start]
+# Install Apache and start the service.
+httpd_service 'AAR-apache' do
+  action [:create, :start]
 end
+
+httpd_module 'wsgi' do
+  instance 'AAR-apache'
+  action :create
+end
+
+package 'python-pip'
 
 python_pip 'flask'
 
-template '/etc/apache2/sites-enabled/AAR-apache.conf' do
+# Add the site configuration.
+httpd_config 'AAR-apache' do
+  instance 'AAR-apache'
   source 'AAR-apache.conf.erb'
-  notifies :restart, 'service[apache2]'
+  notifies :restart, 'httpd_service[AAR-apache]'
 end
